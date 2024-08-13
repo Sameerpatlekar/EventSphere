@@ -9,11 +9,11 @@ const Footer = () => {
               <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                   <h5 class="text-uppercase text-color-second">
-                    Event Management System
+                    EventSphere
                   </h5>
 
                   <p>
-                    Welcome to our event management system website, where every
+                    Welcome to our eventsphere website, where every
                     detail meets perfection. Let's turn your vision into an
                     unforgettable experience!
                   </p>
