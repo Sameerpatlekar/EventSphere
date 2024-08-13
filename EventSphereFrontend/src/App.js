@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./NavbarComponent/Header";
+import AboutUs from './NavbarComponent/AboutUs';
+import Contact from './NavbarComponent/Contact';
 import AdminRegisterForm from "./UserComponent/AdminRegisterForm";
 import UserLoginForm from "./UserComponent/UserLoginForm";
 import UserRegister from "./UserComponent/UserRegister";
@@ -30,6 +32,10 @@ function App() {
         <Route path="/user/customer/register" element={<UserRegister />} />
         <Route path="/user/manager/register" element={<UserRegister />} />
         <Route path="/admin/event/category/add" element={<AddCategoryForm />} />
+        
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<Contact />} />
+
         <Route
           path="/admin/event/category/all"
           element={<ViewAllCategories />}

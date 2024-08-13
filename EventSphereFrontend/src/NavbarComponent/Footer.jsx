@@ -13,145 +13,34 @@ const Footer = () => {
                   </h5>
 
                   <p>
-                    Welcome to our eventsphere website, where every
-                    detail meets perfection. Let's turn your vision into an
-                    unforgettable experience!
+                  "EventSphere: Where every detail is a work of art. Let's collaborate to make your event an extraordinary experience!"
                   </p>
                 </div>
 
-                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                  <h5 class="text-uppercase text-color-second">About us</h5>
-
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 1
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 2
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 3
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 4
-                      </a>
-                    </li>
-                  </ul>
+                <div className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <h5 className="text-uppercase text-color-second">
+                <Link to="/about-us" className="text-color-second text-decoration-none">
+                About us
+                </Link>
+                </h5>
                 </div>
 
-                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                  <h5 class="text-uppercase text-color-second">Contact us</h5>
-
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 1
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 2
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 3
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 4
-                      </a>
-                    </li>
-                  </ul>
+                <div className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <h5 className="text-uppercase text-color-second">
+                <Link to="/contact-us" className="text-color-second text-decoration-none">
+                   Contact us
+                </Link>
+                </h5>
                 </div>
 
-                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                  <h5 class="text-uppercase text-color-second">Careers</h5>
-
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 1
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 2
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 3
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 4
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                  <h5 class="text-uppercase text-color-second">Links</h5>
-
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 1
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 2
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 3
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#!" class="text-color">
-                        Link 4
-                      </a>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </section>
-
-            <hr class="mb-4" />
-
-            <section class="">
-              <p class="d-flex justify-content-center align-items-center">
-                <span class="me-3 text-color">Login from here</span>
-                <Link to="/user/login" class="active">
-                  <button
-                    type="button"
-                    class="btn btn-outline-light btn-rounded bg-info text-color"
-                  >
-                    Log in
-                  </button>
-                </Link>
-              </p>
-            </section>
-
-            <hr class="mb-4" />
           </div>
-
+          
           <div class="text-center">
-            © 2023 Copyright:
+            © 2024 Copyright:
             <a class="text-color-3" href="#">
-              eventmanagementsystem.com
+              eventsphere.com
             </a>
           </div>
         </footer>
