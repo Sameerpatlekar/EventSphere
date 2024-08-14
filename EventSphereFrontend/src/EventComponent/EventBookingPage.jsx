@@ -45,7 +45,7 @@ const EventBookingPage = () => {
   }, []);
 
   const payAndConfirmBooking = (e) => {
-    fetch("http://localhost:8081/api/booking/order/create", {
+    fetch(`${process.env.REACT_APP_BACKEND}/api/booking/order/create`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -67,7 +67,7 @@ const EventBookingPage = () => {
               console.log(response.razorpay_signature);
               response.razorpay_order_id = options.orderId;
 
-              fetch("http://localhost:8081/api/booking/razorpPay/response", {
+              fetch(`${process.env.REACT_APP_BACKEND}/api/booking/razorpPay/response`, {
                 method: "PUT",
                 headers: {
                   Accept: "application/json",
@@ -156,7 +156,7 @@ const EventBookingPage = () => {
 
                 response.razorpay_order_id = options.orderId;
 
-                fetch("http://localhost:8081/api/booking/razorpPay/response", {
+                fetch(`${process.env.REACT_APP_BACKEND}/api/booking/razorpPay/response`, {
                   method: "PUT",
                   headers: {
                     Accept: "application/json",
@@ -290,7 +290,7 @@ const EventBookingPage = () => {
                   {/* Left side - Company Logo */}
                   <div className="col-md-4 d-flex align-items-center justify-content-center">
                     <img
-                      src={"http://localhost:8081/api/event/" + event.image}
+                      src={`${process.env.REACT_APP_BACKEND}/api/event/` + event.image}
                       className="card-img-top rounded img-fluid"
                       alt="event image"
                       style={{

@@ -17,7 +17,7 @@ const UpdateCategoryForm = () => {
   const saveCategory = (e) => {
     let data = { id, name, description };
 
-    fetch("http://localhost:8081/api/event/category/update", {
+    fetch(`${process.env.REACT_APP_BACKEND}/api/event/category/update`, {
       method: "PUT",
       headers: {
         Accept: "application/json",

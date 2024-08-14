@@ -23,14 +23,14 @@ const ViewAllEvents = () => {
 
   const retrieveAllEvent = async () => {
     const response = await axios.get(
-      "http://localhost:8081/api/event/fetch/all?status=Active"
+      `${process.env.REACT_APP_BACKEND}/api/event/fetch/all?status=Active`
     );
     console.log(response.data);
     return response.data;
   };
 
   const deleteEvent = (eventId) => {
-    fetch("http://localhost:8081/api/event/delete?eventId=" + eventId, {
+    fetch(`${process.env.REACT_APP_BACKEND}/api/event/delete?eventId=` + eventId, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -145,7 +145,7 @@ const ViewAllEvents = () => {
                     <tr>
                       <td>
                         <img
-                          src={"http://localhost:8081/api/event/" + event.image}
+                          src={`${process.env.REACT_APP_BACKEND}/api/event/` + event.image}
                           class="img-fluid"
                           alt="event_pic"
                           style={{

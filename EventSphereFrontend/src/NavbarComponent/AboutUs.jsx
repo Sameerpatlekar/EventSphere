@@ -1,4 +1,3 @@
-// src/components/AboutUs.js
 import React from 'react';
 
 function AboutUs() {
@@ -36,13 +35,16 @@ function AboutUs() {
           Our team is comprised of passionate professionals with diverse backgrounds in event management, technology, and customer service. We are united by a common goal: to make every event a memorable success.
         </p>
         <p>
-          <strong>Jane Doe</strong> - Co-Founder & CEO: With over 15 years of experience in event management, Jane leads our team with a vision to redefine the event planning industry.
+          <strong>Kunal Khadke</strong> 
         </p>
         <p>
-          <strong>John Smith</strong> - Chief Technology Officer: John brings extensive expertise in technology and software development, ensuring our platform is both robust and user-friendly.
+          <strong>Devshree Mistry</strong>
         </p>
         <p>
-          <strong>Emily Johnson</strong> - Head of Customer Success: Emily is dedicated to providing exceptional support and ensuring that our users have a positive experience with our platform.
+          <strong>Shweta Chougale</strong> 
+        </p>
+        <p>
+          <strong>Shubham Hole</strong> 
         </p>
 
         <h2 className="mt-4">Join Us</h2>

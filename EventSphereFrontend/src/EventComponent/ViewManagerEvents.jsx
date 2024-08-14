@@ -24,7 +24,7 @@ const ViewManagerEvents = () => {
 
   const retrieveAllEvent = async () => {
     const response = await axios.get(
-      "http://localhost:8081/api/event/fetch/manager-wise?managerId=" +
+      `${process.env.REACT_APP_BACKEND}/api/event/fetch/manager-wise?managerId=` +
         manager.id
     );
     console.log(response.data);
@@ -32,7 +32,7 @@ const ViewManagerEvents = () => {
   };
 
   const deleteEvent = (eventId) => {
-    fetch("http://localhost:8081/api/event/delete?eventId=" + eventId, {
+    fetch(`${process.env.REACT_APP_BACKEND}/api/event/delete?eventId=` + eventId, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -146,7 +146,7 @@ const ViewManagerEvents = () => {
                     <tr>
                       <td>
                         <img
-                          src={"http://localhost:8081/api/event/" + event.image}
+                          src={`${process.env.REACT_APP_BACKEND}/api/event/` + event.image}
                           class="img-fluid"
                           alt="event_pic"
                           style={{

@@ -24,7 +24,7 @@ const EventCard = (event) => {
           {/* Left side - Company Logo */}
           <div className="col-md-4 d-flex align-items-center justify-content-center">
             <img
-              src={"http://localhost:8081/api/event/" + event.item.image}
+              src={`${process.env.REACT_APP_BACKEND}/api/event/` + event.item.image}
               className="card-img-top rounded img-fluid"
               alt="event image"
             />

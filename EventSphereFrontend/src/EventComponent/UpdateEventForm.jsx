@@ -15,7 +15,7 @@ const UpdateEventForm = () => {
 
   const retrieveAllCategories = async () => {
     const response = await axios.get(
-      "http://localhost:8081/api/event/category/fetch/all"
+      `${process.env.REACT_APP_BACKEND}/api/event/category/fetch/all`
     );
     return response.data;
   };
@@ -75,7 +75,7 @@ const UpdateEventForm = () => {
     formData.append("availableTickets", event.availableTickets);
 
     axios
-      .put("http://localhost:8081/api/event/update", formData, {
+      .put(`${process.env.REACT_APP_BACKEND}/api/event/update`, formData, {
         headers: {
           // Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
         },

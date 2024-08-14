@@ -9,12 +9,51 @@ const AdminRegisterForm = () => {
 
   const [registerRequest, setRegisterRequest] = useState({});
 
+  const [errors, setErrors] = useState({
+    emailId: "",
+    password:"",
+   
+  });
+
   const handleUserInput = (e) => {
     setRegisterRequest({ ...registerRequest, [e.target.name]: e.target.value });
   };
 
+  const validateEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  };
+  const validatePassword = (password) => {
+    // Regular expression for validating the password
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(password);
+  };
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!validateEmail(registerRequest.emailId)) {
+      errors.emailId = "Invalid email address";
+    }
+    if (!validatePassword(registerRequest.password)) {
+      errors.password = "Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one digit, and one special character";
+    }
+
+    setErrors(errors);
+
+    // Return true if no errors
+    return Object.keys(errors).length === 0;
+  };
+
+
   const registerAdmin = (e) => {
-    fetch("http://localhost:8081/api/user/admin/register", {
+
+    if (!validateForm()) {
+      return;
+    }
+
+
+    fetch(`${process.env.REACT_APP_BACKEND}/api/user/admin/register`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -82,6 +121,9 @@ const AdminRegisterForm = () => {
           draggable: true,
           progress: undefined,
         });
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1000); // Redirect after 3 seconds
       });
     e.preventDefault();
   };
@@ -114,6 +156,7 @@ const AdminRegisterForm = () => {
                     onChange={handleUserInput}
                     value={registerRequest.emailId}
                   />
+                   {errors.emailId && <small className="text-danger">{errors.emailId}</small>}
                 </div>
                 <div className="mb-3 text-color">
                   <label for="password" className="form-label">
@@ -128,6 +171,7 @@ const AdminRegisterForm = () => {
                     value={registerRequest.password}
                     autoComplete="on"
                   />
+                   {errors.password && <small className="text-danger">{errors.password}</small>}
                 </div>
                 <div className="d-flex aligns-items-center justify-content-center">
                   <button

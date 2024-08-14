@@ -18,118 +18,136 @@ const UserRegister = () => {
     role: "",
   });
 
+  const [errors, setErrors] = useState({
+    emailId: "",
+    phoneNo: "",
+    pincode: "",
+    password: "",
+  });
+
   useEffect(() => {
-    if (document.URL.indexOf("customer") != -1) {
-      user.role = "Customer";
-    } else if (document.URL.indexOf("manager") != -1) {
-      user.role = "Manager";
-    }
+    const role = document.URL.includes("customer")
+      ? "Customer"
+      : document.URL.includes("manager")
+      ? "Manager"
+      : "";
+    setUser((prevState) => ({ ...prevState, role }));
   }, []);
 
   const handleUserInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  const validateEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    const regex = /^(\+91[\-\s]?)?[789]\d{9}$/;
+    return regex.test(phone);
+  };
+
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+    return regex.test(password);
+  };
+
+  const validatePincode = (pincode) => {
+    const regex = /^\d{6}$/;
+    return regex.test(pincode);
+  };
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!validateEmail(user.emailId)) {
+      errors.emailId = "Invalid email address";
+    }
+
+    if (!validatePhone(user.phoneNo)) {
+      errors.phoneNo = "Invalid phone number";
+    }
+
+    if (!validatePincode(user.pincode)) {
+      errors.pincode = "Invalid pincode";
+    }
+
+    if (!validatePassword(user.password)) {
+      errors.password = "Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one digit, and one special character";
+    }
+
+    setErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
+
   const saveUser = (e) => {
     e.preventDefault();
 
-    let jwtToken;
+    if (!validateForm()) {
+      return;
+    }
 
-    fetch("http://localhost:8081/api/user/register", {
+    fetch(`${process.env.REACT_APP_BACKEND}/api/user/register`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        //    Authorization: "Bearer " + jwtToken,
       },
       body: JSON.stringify(user),
     })
       .then((result) => {
-        console.log("result", result);
         result.json().then((res) => {
           if (res.success) {
             toast.success(res.responseMessage, {
               position: "top-center",
               autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
             });
 
             setTimeout(() => {
               navigate("/user/login");
             }, 1000);
-          } else if (!res.success) {
+          } else {
             toast.error(res.responseMessage, {
               position: "top-center",
               autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
             });
 
             setTimeout(() => {
-              window.location.reload(true);
-            }, 1000); // Redirect after 3 seconds
-          } else {
-            toast.error("It seems server is down", {
-              position: "top-center",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-
-            setTimeout(() => {
-              window.location.reload(true);
-            }, 1000); // Redirect after 3 seconds
+              window.location.reload();
+            }, 1000);
           }
         });
       })
       .catch((error) => {
         console.error(error);
-        toast.error("It seems server is down", {
+        toast.error("It seems the server is down", {
           position: "top-center",
           autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
         });
+
         setTimeout(() => {
-          window.location.reload(true);
-        }, 1000); // Redirect after 3 seconds
+          window.location.reload();
+        }, 1000);
       });
   };
 
   return (
     <div>
       <div className="mt-2 d-flex aligns-items-center justify-content-center ms-2 me-2 mb-2">
-        <div
-          className="form-card border-color text-color"
-          style={{ width: "50rem" }}
-        >
+        <div className="form-card border-color text-color" style={{ width: "50rem" }}>
           <div className="container-fluid">
             <div
               className="card-header bg-info custom-bg-text mt-2 d-flex justify-content-center align-items-center"
-              style={{
-                borderRadius: "1em",
-                height: "45px",
-              }}
+              style={{ borderRadius: "1em", height: "45px" }}
             >
               <h5 className="card-title">Register Here!!!</h5>
             </div>
             <div className="card-body mt-3">
               <form className="row g-3" onSubmit={saveUser}>
                 <div className="col-md-6 mb-3 text-color">
-                  <label htmlFor="title" className="form-label">
+                  <label htmlFor="firstName" className="form-label">
                     <b>First Name</b>
                   </label>
                   <input
@@ -143,7 +161,7 @@ const UserRegister = () => {
                 </div>
 
                 <div className="col-md-6 mb-3 text-color">
-                  <label htmlFor="title" className="form-label">
+                  <label htmlFor="lastName" className="form-label" aria-required>
                     <b>Last Name</b>
                   </label>
                   <input
@@ -157,9 +175,9 @@ const UserRegister = () => {
                 </div>
 
                 <div className="col-md-6 mb-3 text-color">
-                  <b>
-                    <label className="form-label">Email Id</label>
-                  </b>
+                  <label className="form-label">
+                    <b>Email Id</b>
+                  </label>
                   <input
                     type="email"
                     className="form-control"
@@ -168,9 +186,11 @@ const UserRegister = () => {
                     onChange={handleUserInput}
                     value={user.emailId}
                   />
+                  {errors.emailId && <small className="text-danger">{errors.emailId}</small>}
                 </div>
+
                 <div className="col-md-6 mb-3">
-                  <label htmlFor="quantity" className="form-label">
+                  <label htmlFor="password" className="form-label">
                     <b>Password</b>
                   </label>
                   <input
@@ -181,25 +201,27 @@ const UserRegister = () => {
                     onChange={handleUserInput}
                     value={user.password}
                   />
+                  {errors.password && <small className="text-danger">{errors.password}</small>}
                 </div>
 
                 <div className="col-md-6 mb-3">
-                  <label htmlFor="contact" className="form-label">
+                  <label htmlFor="phoneNo" className="form-label">
                     <b>Contact No</b>
                   </label>
                   <input
-                    type="number"
+                    type="tel"
                     className="form-control"
                     id="phoneNo"
                     name="phoneNo"
                     onChange={handleUserInput}
                     value={user.phoneNo}
                   />
+                  {errors.phoneNo && <small className="text-danger">{errors.phoneNo}</small>}
                 </div>
 
                 <div className="col-md-6 mb-3">
-                  <label htmlFor="description" className="form-label">
-                    <b> Street</b>
+                  <label htmlFor="street" className="form-label">
+                    <b>Street</b>
                   </label>
                   <textarea
                     className="form-control"
@@ -210,8 +232,9 @@ const UserRegister = () => {
                     value={user.street}
                   />
                 </div>
+
                 <div className="col-md-6 mb-3">
-                  <label htmlFor="price" className="form-label">
+                  <label htmlFor="city" className="form-label">
                     <b>City</b>
                   </label>
                   <input
@@ -229,13 +252,14 @@ const UserRegister = () => {
                     <b>Pincode</b>
                   </label>
                   <input
-                    type="number"
+                    type="tel"
                     className="form-control"
                     id="pincode"
                     name="pincode"
                     onChange={handleUserInput}
                     value={user.pincode}
                   />
+                  {errors.pincode && <small className="text-danger">{errors.pincode}</small>}
                 </div>
 
                 <div className="d-flex aligns-items-center justify-content-center">

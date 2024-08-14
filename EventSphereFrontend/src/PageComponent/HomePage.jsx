@@ -18,7 +18,7 @@ const HomePage = () => {
 
   const retrieveAllCategories = async () => {
     const response = await axios.get(
-      "http://localhost:8081/api/event/category/fetch/all"
+      `${process.env.REACT_APP_BACKEND}/api/event/category/fetch/all`
     );
     return response.data;
   };
@@ -59,7 +59,7 @@ const HomePage = () => {
 
   const retrieveAllEvents = async () => {
     const response = await axios.get(
-      "http://localhost:8081/api/event/fetch/all/active"
+      `${process.env.REACT_APP_BACKEND}/api/event/fetch/all/active`
     );
     return response.data;
   };
@@ -67,13 +67,13 @@ const HomePage = () => {
   const searchEvents = async () => {
     if (eventName !== "") {
       const response = await axios.get(
-        "http://localhost:8081/api/event/fetch/name-wise?eventName=" + eventName
+        `${process.env.REACT_APP_BACKEND}/api/event/fetch/name-wise?eventName=` + eventName
       );
 
       return response.data;
     } else if (eventCategoryId !== "" || eventCategoryId !== "0") {
       const response = await axios.get(
-        "http://localhost:8081/api/event/fetch/category-wise?categoryId=" +
+        `${process.env.REACT_APP_BACKEND}/api/event/fetch/category-wise?categoryId=` +
           eventCategoryId
       );
       return response.data;

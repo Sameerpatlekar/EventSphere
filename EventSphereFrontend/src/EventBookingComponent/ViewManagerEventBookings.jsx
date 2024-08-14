@@ -25,7 +25,7 @@ const ViewManagerEventBookings = () => {
 
   const retrieveAllEventBookings = async () => {
     const response = await axios.get(
-      "http://localhost:8081/api/booking/fetch/manager-wise?managerId=" +
+      `${process.env.REACT_APP_BACKEND}/api/booking/fetch/manager-wise?managerId=` +
         manager.id
     );
     console.log(response.data);
@@ -87,7 +87,7 @@ const ViewManagerEventBookings = () => {
                       <td>
                         <img
                           src={
-                            "http://localhost:8081/api/event/" +
+                            `${process.env.REACT_APP_BACKEND}/api/event/` +
                             booking.event.image
                           }
                           class="img-fluid"

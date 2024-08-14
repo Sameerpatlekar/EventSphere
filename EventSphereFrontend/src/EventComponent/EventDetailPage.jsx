@@ -25,7 +25,7 @@ const EventDetailPage = () => {
 
   const retrieveEvent = async () => {
     const response = await axios.get(
-      "http://localhost:8081/api/event/fetch?eventId=" + eventId
+      `${process.env.REACT_APP_BACKEND}/api/event/fetch?eventId=` + eventId
     );
     console.log(response.data);
     return response.data;
@@ -61,7 +61,7 @@ const EventDetailPage = () => {
                   {/* Left side - Company Logo */}
                   <div className="col-md-4 d-flex align-items-center justify-content-center">
                     <img
-                      src={"http://localhost:8081/api/event/" + event.image}
+                      src={`${process.env.REACT_APP_BACKEND}/api/event/` + event.image}
                       className="card-img-top rounded img-fluid"
                       alt="event image"
                       style={{

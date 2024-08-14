@@ -23,7 +23,7 @@ const ViewAllEventBookings = () => {
 
   const retrieveAllEventBookings = async () => {
     const response = await axios.get(
-      "http://localhost:8081/api/booking/fetch/all"
+      `${process.env.REACT_APP_BACKEND}/api/booking/fetch/all`
     );
     console.log(response.data);
     return response.data;
@@ -93,7 +93,7 @@ const ViewAllEventBookings = () => {
                       <td>
                         <img
                           src={
-                            "http://localhost:8081/api/event/" +
+                            `${process.env.REACT_APP_BACKEND}/api/event/` +
                             booking.event.image
                           }
                           class="img-fluid"

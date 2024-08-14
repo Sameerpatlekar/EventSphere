@@ -13,7 +13,7 @@ const AddCategoryForm = () => {
   const saveCategory = (e) => {
     let data = { name, description };
 
-    fetch("http://localhost:8081/api/event/category/add", {
+    fetch(`${process.env.REACT_APP_BACKEND}/api/event/category/add`, {
 
       method: "POST",
       headers: {

@@ -13,7 +13,7 @@ const AddEventForm = () => {
 
   const retrieveAllCategories = async () => {
     const response = await axios.get(
-      "http://localhost:8081/api/event/category/fetch/all"
+      `${process.env.REACT_APP_BACKEND}/api/event/category/fetch/all`
     );
     return response.data;
   };
@@ -96,7 +96,7 @@ const AddEventForm = () => {
     formData.append("managerId", manager.id);
 
     axios
-      .post("http://localhost:8081/api/event/add", formData, {
+      .post(`${process.env.REACT_APP_BACKEND}/api/event/add`, formData, {
         headers: {
           Authorization: "Bearer " + manager_jwtToken, // Replace with your actual JWT token
         },
