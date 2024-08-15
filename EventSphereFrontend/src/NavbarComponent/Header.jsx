@@ -16,7 +16,7 @@ const Header = () => {
           />
           <Link to="/" class="navbar-brand">
             <i>
-              <b className="text-color-second ms-2">EventSphere</b>
+              <b className="text-color-second ms-3 h1">EventSphere</b>
             </i>
           </Link>
 
