@@ -46,6 +46,45 @@ UNLOCK TABLES;
 --
 -- Table structure for table `booking`
 --
+DROP TABLE IF EXISTS `event`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `event` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `added_date` varchar(255) DEFAULT NULL,
+  `available_tickets` int NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `end_date` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `no_of_tickets` int NOT NULL,
+  `start_date` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `ticket_price` decimal(38,2) DEFAULT NULL,
+  `venue_name` varchar(255) DEFAULT NULL,
+  `venue_type` varchar(255) DEFAULT NULL,
+  `category_id` int DEFAULT NULL,
+  `manager_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK751x8cp2x1h1fay38u2p5gpkr` (`category_id`),
+  KEY `FKqwg67w2qj28omgxj6daelprch` (`manager_id`),
+  CONSTRAINT `FK751x8cp2x1h1fay38u2p5gpkr` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  CONSTRAINT `FKqwg67w2qj28omgxj6daelprch` FOREIGN KEY (`manager_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `event`
+--
+
+LOCK TABLES `event` WRITE;
+/*!40000 ALTER TABLE `event` DISABLE KEYS */;
+INSERT INTO `event` VALUES (1,'1723441959300',5,'abc','1723701060000','fdd6849a475d4de7a9d0e77c529f315d.jpg','pune','MovieMarathon',10,'1723614660000','Active',250.00,'BigBunglow','Resorts',1,3);
+/*!40000 ALTER TABLE `event` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 
 DROP TABLE IF EXISTS `booking`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -107,45 +146,7 @@ UNLOCK TABLES;
 -- Table structure for table `event`
 --
 
-DROP TABLE IF EXISTS `event`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `event` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `added_date` varchar(255) DEFAULT NULL,
-  `available_tickets` int NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `end_date` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `no_of_tickets` int NOT NULL,
-  `start_date` varchar(255) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
-  `ticket_price` decimal(38,2) DEFAULT NULL,
-  `venue_name` varchar(255) DEFAULT NULL,
-  `venue_type` varchar(255) DEFAULT NULL,
-  `category_id` int DEFAULT NULL,
-  `manager_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK751x8cp2x1h1fay38u2p5gpkr` (`category_id`),
-  KEY `FKqwg67w2qj28omgxj6daelprch` (`manager_id`),
-  CONSTRAINT `FK751x8cp2x1h1fay38u2p5gpkr` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
-  CONSTRAINT `FKqwg67w2qj28omgxj6daelprch` FOREIGN KEY (`manager_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `event`
---
-
-LOCK TABLES `event` WRITE;
-/*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (1,'1723441959300',5,'abc','1723701060000','fdd6849a475d4de7a9d0e77c529f315d.jpg','pune','MovieMarathon',10,'1723614660000','Active',250.00,'BigBunglow','Resorts',1,3);
-/*!40000 ALTER TABLE `event` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `payment`
 --
 
